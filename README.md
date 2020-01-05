@@ -80,7 +80,7 @@ ggplot() +
            expand = FALSE)
 ```
 ```
-![](map1.png)
+![Caption for the picture.](/C:\Users\ivan leonel\Documents\graficasRestudios\mapas con R\Streetmap-with-ggplo2/map1.png)
 
 ```
 ## Plot 2
