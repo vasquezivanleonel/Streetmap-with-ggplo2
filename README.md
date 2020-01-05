@@ -79,10 +79,8 @@ ggplot() +
            ylim = c(9.99, 10.20),
            expand = FALSE)
 ```
-```
 ![Caption for the picture.](map1.png)
 
-```
 ## Plot 2
 
 This plot conteins add  features as details with a bit precision. there are more avalaibles features can be useful,To get all tags of a feature via osmdata, you can enter the following function ***available_tags()*** or if you want more details visit <http://ggplot2tutor.com/streetmaps/streetmaps/>.
