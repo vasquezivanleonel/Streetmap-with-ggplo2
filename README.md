@@ -105,7 +105,7 @@ ggplot() +
            ylim = c(9.99, 10.20),
            expand = FALSE) 
 ```
-
+![Caption for the picture.](map2.png)
  
 Now you can try it and to make the ***streetmap*** of you city. If you need help feel free tell me.
 
