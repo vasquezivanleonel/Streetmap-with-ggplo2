@@ -30,4 +30,88 @@ we needs to instal ***omsdata*** and ***ggplot2*** packages, ggplot2 is in **tid
 
 library(tidyverse)
 library(tinytex)
+
 ```
+
+ We will use the package ___osmdata___ to extract the streets from the _Openstreetmap_ database. Openstreetmap is a freely available database of all locations in the world under an open license. Next we will use the funtion **getbb()** to determiner the coordenade longitude and latitude.
+ 
+You can to adjust the longitude and latitude of your preferred city, just change the location in the function ***getbb()***.
+
+```{r rune, include=TRUE}
+
+library(osmdata)
+getbb("Cabudare im Venezuela")
+streets <- getbb("cabudare Venezuela")%>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("motorway", "primary", 
+                            "secondary", "tertiary")) %>%
+  osmdata_sf()
+streets
+
+small_streets <- getbb("Cabudare im Venezuela")%>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street",
+                            "unclassified",
+                            "service", "footway")) %>%
+  osmdata_sf()
+
+river <- getbb("Cabudare im Venezuela")%>%
+  opq()%>%
+  add_osm_feature(key = "waterway", value = "river") %>%
+  osmdata_sf()
+```
+
+## Plot 1
+
+We´ll star  with a plot basic, which to show you the principals streets  our city
+
+
+```{r pressure, echo=TRUE}
+ggplot() +
+  geom_sf(data = streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .4,
+          alpha = .8) +
+  coord_sf(xlim = c(-69.50, -69.05), 
+           ylim = c(9.99, 10.20),
+           expand = FALSE)
+```
+```
+
+![](tools/README-map1.png)
+
+Use `qmplot()` in the same way you’d use `qplot()`, but with a map
+automatically added in the background:
+
+```
+## Plot 2
+
+This plot conteins add  features as details with a bit precision. there are more avalaibles features can be useful,To get all tags of a feature via osmdata, you can enter the following function ***available_tags()*** or if you want more details visit <http://ggplot2tutor.com/streetmaps/streetmaps/>.
+```{r pressure2, echo=TRUE}
+ggplot() +
+  geom_sf(data = streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "steelblue",
+          size = .4,
+          alpha = .8) +
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .4,
+          alpha = .6) +
+  geom_sf(data = river$osm_lines,
+          inherit.aes = FALSE,
+          color = "red",
+          size = .2,
+          alpha = .5) +
+  coord_sf(xlim = c(-69.50, -69.05), 
+           ylim = c(9.99, 10.20),
+           expand = FALSE) 
+```
+
+ 
+Now you can try it and to make the ***streetmap*** of you city. If you need help feel free tell me.
+
