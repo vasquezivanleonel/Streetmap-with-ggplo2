@@ -80,11 +80,7 @@ ggplot() +
            expand = FALSE)
 ```
 ```
-
 ![](map1.png)
-
-Use `qmplot()` in the same way you’d use `qplot()`, but with a map
-automatically added in the background:
 
 ```
 ## Plot 2
