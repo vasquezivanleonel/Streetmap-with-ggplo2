@@ -81,7 +81,7 @@ ggplot() +
 ```
 ```
 
-![](tools/README-map1.png)
+![](map1.png)
 
 Use `qmplot()` in the same way you’d use `qplot()`, but with a map
 automatically added in the background:
